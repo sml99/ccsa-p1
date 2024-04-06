@@ -5,6 +5,8 @@ volumes:
     driver: local
   redis:
     driver: local
+  nfs:
+    driver: local
 
 services:
   owncloud:
@@ -32,14 +34,23 @@ services:
       - OWNCLOUD_MYSQL_UTF8MB4=true
       - OWNCLOUD_REDIS_ENABLED=true
       - OWNCLOUD_REDIS_HOST=redis
-
     healthcheck:
       test: ["CMD", "/usr/bin/healthcheck"]
       interval: 30s
       timeout: 10s
       retries: 5
     volumes:
-      - files:/mnt/data
+      # - files:/mnt/data
+      - nfs:/mnt/data
+
+  nfs-server: # Add the NFS server
+    image: itsthenetwork/nfs-server-alpine
+    restart: unless-stopped
+    privileged: true # Required for NFS server capabilities
+    volumes:
+      - nfs:/shared/folder # The directory to share over NFS
+    environment:
+      - SHARED_DIRECTORY=/shared/folder
 
   mariadb:
     image: mariadb
