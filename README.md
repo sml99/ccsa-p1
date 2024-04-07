@@ -61,31 +61,45 @@ Implements a storage solution that allows for shared file access across the netw
 - **Container:** nfs-server
 ![image](https://github.com/sml99/ccsa-p1/assets/29798184/4dfa325b-1ffb-4927-8da8-d44c911a5a82)
 
-
-
 ### Scenario 2: Medium-sized Company
 
-#### Load Balancer with HAProxy (Optional)
+### Volumes
+![volumes](https://github.com/sml99/ccsa-p1/assets/29798184/1e4bfdb3-87c8-4ae8-a62a-837d4b11308d)
 
-- **Container:** HAProxy
+- **nfs:** Stores persistent data for ownCloud with shared access, mapped to an NFS server container for high availability.
+- **mysql:** Holds MariaDB master database data, using local storage for persistence of user and application data.
+- **mysql_slave:** Stores data for the MariaDB slave, aiding in data redundancy and load distribution through replication.
+- **redis:** Contains Redis data for caching to improve performance and response times, employing local storage for cache data persistence.
 
-#### Replication and High Availability
+### Services
 
-- **Description:** [Describe how you achieved replication and high availability for MariaDB or other services, if applicable]
+- **haproxy:** Provides load balancing for ownCloud servers, optimizing traffic distribution to ensure high availability.
+  ![haproxy](https://github.com/sml99/ccsa-p1/assets/29798184/60e97ff3-6ed2-42a2-8d97-d199de33c5f6)
 
-## Conclusions
+- **ocserver:** The ownCloud server container offering file sharing and collaboration, in this scenario We have to replicas of this service.
+  ![oc](https://github.com/sml99/ccsa-p1/assets/29798184/c3d2e8a0-7dd1-4066-98fc-fc238556f24e)
 
-[Include a brief reflection on the work done, challenges encountered and how they were overcome, key learnings from the practice.]
+- **mariadb_master:** The primary MariaDB service for ownCloud, configured for reliability and performance with health checks.
+  ![mdb](https://github.com/sml99/ccsa-p1/assets/29798184/537c58ca-af5b-4fec-93b9-5a486b3071b0)
+
+- **mariadb_slave:** A replica database for read scalability and backup, synchronized with the master database.
+  ![sdb](https://github.com/sml99/ccsa-p1/assets/29798184/043f44a0-8a8a-40d1-aa03-0a0b07f837ff)
+
+- **redis:** Enhances ownCloud performance by caching session and configuration data in memory, reducing database load.
+- **ldap:** Centralizes authentication for ownCloud with LDAP, using environment variables for secure configuration.
+- **phpldapadmin:** A web-based tool for managing the LDAP server, facilitating easy administration of LDAP entries.
+- **nfs-server:** Simulates an NFS server within Docker, providing shared storage for ownCloud data across instances.
+
+
+### Network
+
+- **owncloud-net:** A Docker bridge network enabling secure, isolated communication between containers, essential for the ownCloud ecosystem.
+
 
 ## Bibliographic References and Resources Used
 
 - Docker Documentation: https://docs.docker.com/
-- Kubernetes Documentation: https://kubernetes.io/docs/
 - OpenLDAP Official Website: https://www.openldap.org/
 - MariaDB Docker Image: https://hub.docker.com/_/mariadb
 - ownCloud Official Website: https://owncloud.com/
 - HAProxy Documentation: http://docs.haproxy.org/
-
----
-
-**Note:** Make sure to include any configuration files, scripts, Docker-compose commands, or Kubernetes YAML files you used for the service deployment as part of the files submitted for practice evaluation.
