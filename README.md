@@ -13,7 +13,7 @@
 
 ## Practice Description
 
-This practice involves deploying an ownCloud service using Docker containers, Docker-compose, and optionally Kubernetes to manage different service architectures based on system requirements. Services for user authentication with LDAP, database management with MariaDB, cache management with Redis were implemented, and optionally a load balancer with HAProxy.
+This practice involves deploying an ownCloud service using Docker containers and Docker-compose to manage different service architectures based on system requirements. Services for user authentication with LDAP, database management with MariaDB, cache management with Redis were implemented, and a load balancer with HAProxy.
 
 ## Deployed Services and Configuration
 
@@ -25,7 +25,6 @@ Sets up the core service for file sharing and collaboration, accessible via a we
 
 - **Container:** ownCloud
 - **Port:** 8080
-- ![image](https://github.com/sml99/ccsa-p1/assets/29798184/87bcb6de-cd7b-4f85-b702-9acef303277a)
 
 
 #### MariaDB Database
@@ -50,8 +49,6 @@ Integrates a directory service for centralized user management and authenticatio
 Offers a graphical interface for managing LDAP server settings and entries, improving ease of administration.
 ![phpldap](https://github.com/sml99/ccsa-p1/assets/29798184/a1a70189-4b0e-49ce-9b92-646a2782a45e)
 
-![image](https://github.com/sml99/ccsa-p1/assets/29798184/9d8b2d3a-77d0-4b3f-b28b-ec7908c392d5)
-
 - **Container:** phpldapadmin
 
 #### Network file system 
@@ -59,9 +56,20 @@ Implements a storage solution that allows for shared file access across the netw
   ![nfs](https://github.com/sml99/ccsa-p1/assets/29798184/0fa7c0bc-c602-4720-9670-80c76fdf4e14)
 
 - **Container:** nfs-server
+**.env file**
+  ![env](https://github.com/sml99/ccsa-p1/assets/29798184/1f380b84-f61d-4de6-9e37-c254ab5a205b)
+
+
+![image](https://github.com/sml99/ccsa-p1/assets/29798184/adb7efc5-3f88-418a-a1cc-c7ab0ea707c3)
 ![image](https://github.com/sml99/ccsa-p1/assets/29798184/4dfa325b-1ffb-4927-8da8-d44c911a5a82)
+![image](https://github.com/sml99/ccsa-p1/assets/29798184/9d8b2d3a-77d0-4b3f-b28b-ec7908c392d5)
+![image](https://github.com/sml99/ccsa-p1/assets/29798184/87bcb6de-cd7b-4f85-b702-9acef303277a)
+
 
 ### Scenario 2: Medium-sized Company
+In the second scenario, We have more users and traffic, this caused the need for adding more owncloud servers and a database replica.
+redis, nfs-server, ldap and phpldapadmin keep the same config from scenario 1 but the rest are modified in this scenario.
+![image](https://github.com/sml99/ccsa-p1/assets/29798184/f142d10c-adc2-4308-9e6c-ad0d06b74079)
 
 ### Volumes
 ![volumes](https://github.com/sml99/ccsa-p1/assets/29798184/1e4bfdb3-87c8-4ae8-a62a-837d4b11308d)
@@ -94,6 +102,7 @@ Implements a storage solution that allows for shared file access across the netw
 ### Network
 
 - **owncloud-net:** A Docker bridge network enabling secure, isolated communication between containers, essential for the ownCloud ecosystem.
+![image](https://github.com/sml99/ccsa-p1/assets/29798184/54e5ac89-8c93-443f-9495-6ab68a5170a9)
 
 
 ## Bibliographic References and Resources Used
