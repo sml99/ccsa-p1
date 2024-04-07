@@ -1,6 +1,4 @@
 volumes:
-  files:
-    driver: local
   mysql:
     driver: local
   redis:
