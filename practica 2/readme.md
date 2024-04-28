@@ -75,6 +75,7 @@ This document outlines the process of setting up Kubernetes and OpenFaaS, deploy
 ### Face Detection Logic
 - **Code Implementation**: ![code](https://github.com/sml99/ccsa-p1/assets/29798184/77f26a4d-b187-4a25-9318-c1b034f82cf6)
 - **Invocation**: ![image](https://github.com/sml99/ccsa-p1/assets/29798184/c324369c-1ab4-46de-8c28-1f6e586b5091)
+- ![image](https://github.com/sml99/ccsa-p1/assets/29798184/16121491-f3e6-4823-9aca-22ca6b28cbae)
 - **Results**: ![output](https://github.com/sml99/ccsa-p1/assets/29798184/1fde9a31-4b18-4494-9264-1917d95c0878)
 
 
