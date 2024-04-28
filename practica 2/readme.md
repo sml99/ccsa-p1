@@ -1,7 +1,7 @@
-# Face Recognition Function Deployment using OpenFaaS on Kubernetes
+# Funciones como servicio
 
 ## Overview
-This document outlines the process of setting up Kubernetes and OpenFaaS, deploying pre-existing face recognition functions, developing a custom face detection function, and alternatives for other applications. This practice aims to implement scalable face detection functionalities that can serve as a component for biometric identification.
+This document outlines the process of setting up Kubernetes and OpenFaaS, deploying pre-existing face recognition functions, developing a custom face detection function.
 
 ## Table of Contents
 - [Setup](#setup)
