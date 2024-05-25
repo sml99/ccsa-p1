@@ -120,7 +120,7 @@ for mid, settings in to_run.items():
 ## Building and Evaluating Classifiers
 
 ### Classifiers Used
-We implemented three classifiers using Spark's MLlib library:
+We implemented two classifiers using Spark's MLlib library:
 1. Decision Tree Classifier
 2. Random Forest Classifier
 
@@ -133,6 +133,12 @@ The accuracies of the classifiers on the test set are as follows:
 - **Random Forest**: Achieved an accuracy of 90.15%.
 
 ### Executing the model prediction using Flask API: 
+First, we start the flask server inside practica3spark-spark-master-1
+```
+# export FLASK_APP=/opt/spark-apps/celestialApp.py
+# flask run --host=0.0.0.0 -p 5000
+```
+Second, We test it using the attributs provided in data.json as a payload
 ![image](https://github.com/sml99/ccsa-p1/assets/29798184/72d0fb24-325f-4f72-a5b3-b317a735f566)
 
 ## Conclusion
